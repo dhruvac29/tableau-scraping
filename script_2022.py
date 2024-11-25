@@ -1,6 +1,7 @@
 from tableauscraper import TableauScraper as TS
 import pandas as pd
 import time
+import random
 
 url = "https://public.tableau.com/views/AskCHISNE2_0/DataTable?%3Adisplay_static_image=n&%3Aembed=true&%3Aembed=y&%3Alanguage=en-US&%3AshowVizHome=n&%3AapiID=host0#navType=0&navSrc=Parse"
 
@@ -25,7 +26,7 @@ indicatorsWB = newWS.setFilter("VariableDropDown", indicators)
 indicatorsWB = newWS.setFilter("geoType (AskCHISNEpolygons2016.shp)", "tract")
 
 # Prepare variables for writing to CSV
-csv_file = "2022.csv"
+csv_file = "2021_2022.csv"
 header_written = False
 
 for i in range(10200):
@@ -43,4 +44,4 @@ for i in range(10200):
             df.to_csv(
                 csv_file, index=False, mode="a", header=False
             )  # Append without header
-    time.sleep(5000)  # Add delay to avoid overloading the server
+    time.sleep(random.randint(1, 2))  # Add delay to avoid overloading the server
